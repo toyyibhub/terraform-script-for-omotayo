@@ -1,6 +1,7 @@
 
 resource "aws_vpc" "vpc1" {        
   cidr_block = var.vpccidrblock
+  enable_dns_hostnames = true
 
   tags = {
     Name = "${local.tag-name}-vpc"
@@ -8,7 +9,7 @@ resource "aws_vpc" "vpc1" {
 }
   
  resource "aws_subnet" "publicsubnet1" {
-  vpc_id     = aws_vpc.vpc.id
+  vpc_id     = aws_vpc.vpc1.id
   cidr_block = var.publicsubnet1cidrblock
   availability_zone = var.az1
 
@@ -17,7 +18,7 @@ resource "aws_vpc" "vpc1" {
   }
 }
 resource "aws_subnet" "publicsubnet2" {
-  vpc_id     = aws_vpc.vpc.id
+  vpc_id     = aws_vpc.vpc1.id
   cidr_block = var.publicsubnet2cidrblock
   availability_zone = var.az2
 
@@ -26,7 +27,7 @@ resource "aws_subnet" "publicsubnet2" {
   }
 }
 resource "aws_subnet" "privatesubnet1" {
-  vpc_id     = aws_vpc.vpc.id
+  vpc_id     = aws_vpc.vpc1.id
   cidr_block = var.privatesubnet1cidrblock
   availability_zone = var.az1
 
@@ -35,7 +36,7 @@ resource "aws_subnet" "privatesubnet1" {
   }
 }
 resource "aws_subnet" "privatesubnet2" {
-  vpc_id     = aws_vpc.vpc.id
+  vpc_id     = aws_vpc.vpc1.id
   cidr_block = var.privatesubnet2cidrblock
   availability_zone = var.az2
 

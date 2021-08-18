@@ -40,7 +40,7 @@ resource "aws_security_group" "private-sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    security_groups = ["${aws_security_group.lb-sg.id}"]
+    security_groups = [aws_security_group.lb-sg.id]
   }
 
   ingress {
@@ -48,7 +48,7 @@ resource "aws_security_group" "private-sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    security_groups = ["${aws_security_group.lb-sg.id}"]
+    security_groups = [aws_security_group.lb-sg.id]
   }
   egress {
     from_port   = 0

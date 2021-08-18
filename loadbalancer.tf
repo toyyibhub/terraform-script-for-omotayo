@@ -1,4 +1,5 @@
-resource "aws_lb" "application-lb" {
+
+resource "aws_lb" "app-lb" {
   name               = "App-loadbalancer"
   internal           = false
   load_balancer_type = "application"
@@ -26,14 +27,15 @@ resource "aws_lb_target_group" "lb-tg" {
   target_type = "instance"
   vpc_id      = aws_vpc.vpc1.id
 
-  health_check {
-    healthy_threshold =""
-    interval =""
-    matcher =""
-    path =""
-    port =""
-    protocol =""
-    timeout =""
-    unhealthy_threshold =""
+
+}
+resource "aws_lb_listener" "lb-listener" {
+  load_balancer_arn = aws_lb.app-lb.arn
+  port              = "80"
+  protocol          = "HTTP"
+  
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.lb-tg.arn
   }
 }

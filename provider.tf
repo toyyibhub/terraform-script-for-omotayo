@@ -4,7 +4,7 @@ provider "aws" {
   }
 
 locals {
-  tag-name = tayo
+  tag-name = "tayo"
 }
 
 
