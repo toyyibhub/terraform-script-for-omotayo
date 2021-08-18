@@ -11,12 +11,29 @@ resource "aws_lb" "application-lb" {
   subnet_mapping {
     subnet_id = aws_subnet.publicsubnet2.id
   }
-  subnets            = aws_subnet.public.*.id
 
   enable_deletion_protection = true
 
 
   tags = {
-    Environment = "production"
+    Name = "${local.tag-name}-App-lb"
+  }
+}
+resource "aws_lb_target_group" "lb-tg" {
+  name        = "server-lb-tg"
+  port        = 80
+  protocol    = "HTTP"
+  target_type = "instance"
+  vpc_id      = aws_vpc.vpc1.id
+
+  health_check {
+    healthy_threshold =""
+    interval =""
+    matcher =""
+    path =""
+    port =""
+    protocol =""
+    timeout =""
+    unhealthy_threshold =""
   }
 }

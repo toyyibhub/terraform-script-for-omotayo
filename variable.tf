@@ -32,7 +32,3 @@
  variable "privatesubnet2cidrblock" {
     type       = string
  }
-variable "sgcidrblock" {
-    type       = string
- }
-

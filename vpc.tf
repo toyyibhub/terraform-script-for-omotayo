@@ -3,7 +3,7 @@ resource "aws_vpc" "vpc1" {
   cidr_block = var.vpccidrblock
 
   tags = {
-    Name = "tayo-vpc"
+    Name = "${local.tag-name}-vpc"
   }
 }
   
@@ -52,7 +52,7 @@ resource "aws_eip" "eip1" {
 
 resource "aws_nat_gateway" "Natgateway" {
   allocation_id = aws_eip.eip1.id
-  subnet_id     = aws_subnet.subnet1.id
+  subnet_id     = aws_subnet.publicsubnet1.id
 
   tags = {
     Name = "${local.tag-name}-Nat-gateway"
